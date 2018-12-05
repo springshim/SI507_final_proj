@@ -1,0 +1,40 @@
+
+h1 {
+	text-align: center;
+}
+
+.fullbox {
+    border-width: 1px;
+    width: 1000px;
+  	margin: auto;
+  	padding: 10px;
+}
+
+.left {
+	background-color: pink;
+	float:left;
+	width: 30%;
+}
+
+.right {
+	background-color: skyblue;
+	float:left;
+	width: 65%;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 128px;
+    background-color: orange;    
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
