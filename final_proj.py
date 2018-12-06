@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import sqlite3
 import csv
 from datetime import datetime, timedelta
-from datetime import datetime, timedelta
 
 ######################### CLASS DEFINITION #########################
 class BoxOffice():
@@ -16,26 +15,17 @@ class BoxOffice():
         self.date = date
 
 
-class BoxOfficeInfo():
-    def __init__ (self, title, title_id, daily, theater, whole, date):
-        self.title = title,
-        self.title_id = title_id
-        self.daily = daily,
-        self.theater = theater,
-        self.whole = whole,
-        self.date = date
-
-
 class MovieInfo():
-    def __init__ (self, poster, title, title_id, runtime, release, genre, overview, starring = [], picture = []):
-        self.poster = poster
-        self.title = title
-        self.title_id = title_id
-        self.runtime = runtime
-        self.release = release
-        self.genre = genre
-        self.overview = overview
-        self.starring = starring
+    def __init__ (self, poster, title, title_id, runtime, release, budget, genre, overview, starring = [], picture = []):
+        self.poster = poster,
+        self.title = title,
+        self.title_id = title_id,
+        self.runtime = runtime,
+        self.release = release,
+        self.budget = budget,
+        self.genre = genre,
+        self.overview = overview,
+        self.starring = starring,
         self.picture = picture
 
 ######################### CACHE DATA #########################
@@ -80,18 +70,9 @@ def get_box_office(date):
     query_list = []
     res_title = []
     res = []
-    daily_gross_list = []
-    whole_gross_list = []
-    date_list = []
-    theater_list = []
 
     result_list = []
 
-    date_input = date
-    date_criteria = '2018-11-28'
-
-    date_input = datetime.strptime(date_input, "%Y-%m-%d")
-    date_criteria = datetime.strptime(date_criteria, "%Y-%m-%d")
 
     ###### Title List #######
     site_div = page_soup.find_all("font")
@@ -101,13 +82,11 @@ def get_box_office(date):
             title = site_div[i].find('a').string
             res_title.append(title)
 
+
     for i in range(16, 36):
-        if date_input < date_criteria:
-            if i % 2 == 0:
-                title_list.append(res_title[i])
-        else:
-            if i % 2 ==1:
-                title_list.append(res_title[i])
+        if i % 2 == 0:
+            title_list.append(res_title[i])
+
 
     for k in title_list:
         if "Dr. Seuss'" in k:
@@ -140,88 +119,13 @@ def get_box_office(date):
         else:
             query_list.append(k)
 
-    # print(url_full)
-    # print(query_list)
-
-
-    site_div = page_soup.find_all("td")
-    for i in range(len(site_div)):
-        title = site_div[i].find('font', attrs={"size":"2"})
-        if (title != None):
-            title = site_div[i].find('font', attrs={"size":"2"})
-            res.append(title)
-    # print(res)
-
-    ###### Daily Gross #######
-    if date_input < date_criteria:
-        index = 39
-    else:
-        index = 21
 
     for i in range(10):
-        b = str(res[index])
-        a = b.replace('<b>', "")
-        a = a.replace("</b>", "")
-        a = a.replace('<font size="2">', "")
-        a = a.replace("</font>", "")
-        daily_gross_list.append(a)
-        index = index + 11
-    # print(daily_gross_list)
-
-    ###### Theater #######
-    if date_input < date_criteria:
-        index = 42
-    else:
-        index = 24    
-
-    for i in range(10):
-        b = str(res[index])
-        a = b.replace('<b>', "")
-        a = a.replace("</b>", "")
-        a = a.replace('<font size="2">', "")
-        a = a.replace("</font>", "")
-        theater_list.append(a)
-        index = index + 11
-    # print(theater_list)
-
-    ###### Whole Gross #######
-    if date_input < date_criteria:
-        index = 44
-    else:
-        index = 26    
-    for i in range(10):
-        b = str(res[index])
-        a = b.replace('<b>', "")
-        a = a.replace("</b>", "")
-        a = a.replace('<font size="2">', "")
-        a = a.replace("</font>", "")
-        whole_gross_list.append(a)
-        index = index + 11
-    # print(whole_gross_list)
-
-    ###### Date #######
-    if date_input < date_criteria:
-        index = 45
-    else:
-        index = 27    
-    for i in range(10):
-        b = str(res[index])
-        a = b.replace('<b>', "")
-        a = a.replace("</b>", "")
-        a = a.replace('<font size="2">', "")
-        a = a.replace("</font>", "")
-        date_list.append(a)
-        index = index + 11
-    print(date_list)
-
-    for i in range(10):
-        result = BoxOfficeInfo(title=query_list[i], title_id = '',daily=daily_gross_list[i], theater=theater_list[i], whole=whole_gross_list[i], date=date_list[i])
+        result = BoxOffice(ranking=i+1, title=query_list[i], title_id='', date=date)
         result_list.append(result)
-        # print(query_list[i])
+        # print(date)
 
     return result_list
-
-# get_box_office('2018-07-23')
 
 
 
@@ -280,7 +184,6 @@ def get_movie_id():
         i.title = i.title.replace(',', '')
         i.title = i.title.replace("'", '')
         query_list.append(i.title)
-    # print(query_list)
 
     movie_id_list = []
 
@@ -355,6 +258,7 @@ def get_movie_info():
             title = full_result_list[i]['title']
             title_id = id_list[i]
             runtime = full_result_list[i]['runtime']
+            budget = full_result_list[i]['budget']
             release = full_result_list[i]['release_date']
             genre = full_result_list[i]['genres'][0]['name']
             overview = full_result_list[i]['overview']
@@ -368,20 +272,19 @@ def get_movie_info():
                         title = title,
                         title_id = title_id,
                         runtime = runtime,
+                        budget = budget,
                         release = release,
                         genre = genre,
                         overview = overview,
                         starring = starring,
                         picture = picture)
         compact_result.append(res)
+        # print(compact_result.title)
 
-
-    # for i in range(len(compact_result)):
-    #     print(compact_result[i].overview)
 
     return compact_result
 
-# get_movie_info()
+
 
 def create_csv():
     res_list = []
@@ -395,7 +298,7 @@ def create_csv():
 
 
     with open('movie_info.csv', 'a', newline = '') as csvfile:
-        fieldnames = ['poster', 'title', 'title_id', 'runtime', 'release', 'genre', 'overview', 'starring', 'picture']
+        fieldnames = ['poster', 'title', 'title_id', 'runtime', 'budget', 'release', 'genre', 'overview', 'starring', 'picture']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
         with open('movie_info.csv', 'r') as f:
@@ -406,15 +309,75 @@ def create_csv():
                 title_criteria.append(your_list[i][1])
 
         for i in res_list:
+            i.poster = str(i.poster)
+            i.poster = i.poster.replace('(', '')
+            i.poster = i.poster.replace(')', '')
+            i.poster = i.poster.replace(',', '')
+            i.poster = i.poster.replace('"', '')
+            i.poster = i.poster.replace("'", '')
+
+            i.title = str(i.title)
+            i.title = i.title.replace('(', '')
+            i.title = i.title.replace(')', '')
+            i.title = i.title.replace(',', '')
+            i.title = i.title.replace('"', '')
+            i.title = i.title.replace("'", '')
+
+            i.title_id = str(i.title_id)
+            i.title_id = i.title_id.replace('(', '')
+            i.title_id = i.title_id.replace(')', '')
+            i.title_id = i.title_id.replace(',', '')
+            i.title_id = i.title_id.replace('"', '')
+            i.title_id = i.title_id.replace("'", '')
+
+            i.runtime = str(i.runtime)
+            i.runtime = i.runtime.replace('(', '')
+            i.runtime = i.runtime.replace(')', '')
+            i.runtime = i.runtime.replace(',', '')
+            i.runtime = i.runtime.replace('"', '')
+            i.runtime = i.runtime.replace("'", '')                
+
+            i.budget = str(i.budget)
+            i.budget = i.budget.replace('(', '')
+            i.budget = i.budget.replace(')', '')
+            i.budget = i.budget.replace(',', '')
+            i.budget = i.budget.replace('"', '')
+            i.budget = i.budget.replace("'", '')
+
+            i.release = str(i.release)
+            i.release = i.release.replace('(', '')
+            i.release = i.release.replace(')', '')
+            i.release = i.release.replace(',', '')
+            i.release = i.release.replace('"', '')
+            i.release = i.release.replace("'", '')
+
+            i.genre = str(i.genre)
+            i.genre = i.genre.replace('(', '')
+            i.genre = i.genre.replace(')', '')
+            i.genre = i.genre.replace(',', '')
+            i.genre = i.genre.replace('"', '')
+            i.genre = i.genre.replace("'", '')
+
+            i.overview = str(i.overview)
+            i.overview = i.overview.replace('(', '')
+            i.overview = i.overview.replace(')', '')
+            i.overview = i.overview.replace(',', '')
+            i.overview = i.overview.replace('"', '')
+            i.overview = i.overview.replace("'", '')   
+
             temp.append(i.title_id)            
             if not i.title in title_criteria:
                 try:
-                    writer.writerow({'poster': i.poster, 'title': i.title, 'title_id': i.title_id, 'runtime':i.runtime, 'release': i.release, 'genre': i.genre, 'overview': i.overview, 'starring': i.starring, 'picture': i.picture})
+                    writer.writerow({'poster': i.poster, 'title': i.title, 'title_id': i.title_id, 'runtime':i.runtime, 'budget':i.budget, 'release': i.release, 'genre': i.genre, 'overview': i.overview, 'starring': i.starring, 'picture': i.picture})
                 except:
                     i.overview = ''
-                    writer.writerow({'poster': i.poster, 'title': i.title, 'title_id': i.title_id, 'runtime':i.runtime, 'release': i.release, 'genre': i.genre, 'overview': i.overview, 'starring': i.starring, 'picture': i.picture})
+                    i.starring = ''
+                    writer.writerow({'poster': i.poster, 'title': i.title, 'title_id': i.title_id, 'runtime':i.runtime, 'budget':i.budget, 'release': i.release, 'genre': i.genre, 'overview': i.overview, 'starring': i.starring, 'picture': i.picture})
 
 
+
+    for i in range(len(temp)):
+        title_id_list[i].title_id = temp[i]
 
     with open('boxoffice.csv', 'a', newline = '') as csvfile:
         fieldnames = ['ranking', 'title', 'title_id', 'date']
@@ -427,29 +390,14 @@ def create_csv():
             for i in range(len(your_list)):
                 date_criteria.append(your_list[i][3])
 
-        ranking_index = 1
-        for i in res_list:
-            if not date in date_criteria:
-                writer.writerow({'ranking': ranking_index, 'title': i.title, 'title_id': i.title_id, 'date': date})
-                ranking_index += 1
-
-
-    for i in range(10):
-        title_id_list[i].title_id = temp[i]
-
-    with open('boxoffice_info.csv', 'a', newline = '') as csvfile:
-        fieldnames = ['title', 'title_id', 'daily', 'theater', 'whole', 'date']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        with open('boxoffice_info.csv', 'r') as f:
-            reader = csv.reader(f)
-            your_list = list(reader)
-
-            for i in range(len(your_list)):
-                title2_criteria.append(your_list[i][0])
-
-        ranking_index = 1
         for i in title_id_list:
+            i.ranking = str(i.ranking)
+            i.ranking = i.ranking.replace('(', '')
+            i.ranking = i.ranking.replace(')', '')
+            i.ranking = i.ranking.replace(',', '')
+            i.ranking = i.ranking.replace('"', '')
+            i.ranking = i.ranking.replace("'", '')
+
             i.title = str(i.title)
             i.title = i.title.replace('(', '')
             i.title = i.title.replace(')', '')
@@ -457,25 +405,15 @@ def create_csv():
             i.title = i.title.replace('"', '')
             i.title = i.title.replace("'", '')
 
-            i.daily = str(i.daily)
-            i.daily = i.daily.replace('(', '')
-            i.daily = i.daily.replace(')', '')
-            i.daily = i.daily.replace(',', '')
-            i.daily = i.daily.replace("'", '')
+            i.title_id = str(i.title_id)
+            i.title_id = i.title_id.replace('(', '')
+            i.title_id = i.title_id.replace(')', '')
+            i.title_id = i.title_id.replace(',', '')
+            i.title_id = i.title_id.replace('"', '')
+            i.title_id = i.title_id.replace("'", '')
 
-            i.theater = str(i.theater)
-            i.theater = i.theater.replace('(', '')
-            i.theater = i.theater.replace(')', '')
-            i.theater = i.theater.replace(',', '')
-            i.theater = i.theater.replace("'", '')
-
-            i.whole = str(i.whole)
-            i.whole = i.whole.replace('(', '')
-            i.whole = i.whole.replace(')', '')
-            i.whole = i.whole.replace(',', '')
-            i.whole = i.whole.replace("'", '')
-            if not i.title in title2_criteria:
-                writer.writerow({'title': i.title, 'title_id': i.title_id, 'daily': i.daily, 'theater': i.theater, 'whole': i.whole, 'date': i.date})
+            if not date in date_criteria:
+                writer.writerow({'ranking': i.ranking, 'title': i.title, 'title_id': i.title_id, 'date': i.date})
 
 
 def create_db():
@@ -485,11 +423,6 @@ def create_db():
 
     statement = '''
         DROP TABLE IF EXISTS 'BoxOffice';
-    '''
-    cur.execute(statement)
-
-    statement = '''
-        DROP TABLE IF EXISTS 'BoxOfficeInfo';
     '''
     cur.execute(statement)
 
@@ -513,26 +446,13 @@ def create_db():
 
 
     statement = '''
-        CREATE TABLE 'BoxOfficeInfo' (
-            'id' INTEGER PRIMARY KEY AUTOINCREMENT,
-            'title' TEXT NOT NULL,
-            'title_id' Integer NOT NULL,
-            'daily' Integer NOT NULL,
-            'theater' Integer NOT NULL,
-            'whole' Integer NOT NULL,
-            'date' Integer NOT NULL
-        );
-    '''
-    cur.execute(statement)
-
-
-    statement = '''
         CREATE TABLE 'MovieInfo' (
             'id' INTEGER PRIMARY KEY AUTOINCREMENT,
             'poster' TEXT NOT NULL,
             'title' TEXT NOT NULL,
             'title_id' Integer NOT NULL,
             'runtime' Integer NOT NULL,
+            'budget' Integer NOT NULL,
             'release' TEXT NOT NULL,
             'genre' TEXT NOT NULL,
             'overview' TEXT NOT NULL,
@@ -554,25 +474,14 @@ def create_db():
                 cur.execute(statement, insertion)
                 conn.commit()
 
-    with open('boxoffice_info.csv') as csvFile:
-        res = csv.reader(csvFile)
-
-        for row in res:
-            if row[0] != 'title':
-                insertion = (None, row[0], row[1], row[2], row[3], row[4], row[5])
-                statement = 'INSERT INTO "BoxOfficeInfo" '
-                statement += 'VALUES (?, ?, ?, ?, ?, ?, ?)'
-                cur.execute(statement, insertion)
-                conn.commit()
-
     with open('movie_info.csv') as csvFile:
         res = csv.reader(csvFile)
 
         for row in res:
             if row[0] != 'poster':
-                insertion = (None, row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8])
+                insertion = (None, row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9])
                 statement = 'INSERT INTO "MovieInfo" '
-                statement += 'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+                statement += 'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
                 cur.execute(statement, insertion)
                 conn.commit()
 
@@ -590,18 +499,18 @@ def interactive_prompt():
     The input should be 'type' and 'date'.
     [TYPE]
     You can choose one of type below.
-        daily: Show the movie information based on the date's box-office ranking
-        whole: Show the movie information based on the whole gross income
-        theater: Show the movie information based on the number of theaters
-        date: Show the movie information based on the number of dates after release
+        boxoffice: Show the movie information based on the date's box-office ranking
+        runtime: Show the movie information based on the whole gross income
+        releasedate: Show the movie information based on the number of theaters
+        budget: Show the movie information based on the number of dates after release
     [DATE]
-    The date type should be 'YYYY-MM-DD'
-    The input example is daily 2018-12-01
+    The date type should be 'YYYYMMDD'
+    The input example is daily 20181201
     If you want to finish this system, type exit
                     """)
                 continue
 
-        elif command[0] in ['daily', 'whole', 'theater', 'date']:
+        elif command[0] in ['boxoffice', 'runtime', 'releasedate', 'budget']:
             date = command[1]
             get_box_office(date)
             print(date)
@@ -615,19 +524,24 @@ def interactive_prompt():
 
 ########### TEST LINE ########### 
 
+
+# create_db()
+
+
+date = '2018-05-31'
+# get_movie_id()
+# get_movie_info()
+# (get_box_office(date))
+# get_movie_id()
+# create_db()
 # create_csv()
-# create_db()
 
+for a in range(1):
+    date = datetime.strptime(date, "%Y-%m-%d")
+    date = date + timedelta(days=1)
+    date = str(date)[:10]
 
-date = '2018-12-03'
-get_box_office(date)
-# create_db()
-
-# for a in range(20):
-#     date = datetime.strptime(date, "%Y-%m-%d")
-#     date = date + timedelta(days=1)
-#     date = str(date)[:10]
-#     create_db()
+    create_db()
 
 
 

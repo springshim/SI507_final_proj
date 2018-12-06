@@ -6,7 +6,4 @@ test = '2018-11-28'
 date = datetime.strptime(date, "%Y-%m-%d")
 test = datetime.strptime(test, "%Y-%m-%d")
 
-if date < test:
-	print("date")
-else:
-	print("test")
+print(date)
