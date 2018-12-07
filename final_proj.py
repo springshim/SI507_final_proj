@@ -376,44 +376,44 @@ def create_csv():
 
 
 
-    for i in range(len(temp)):
-        title_id_list[i].title_id = temp[i]
+    # for i in range(len(temp)):
+    #     title_id_list[i].title_id = temp[i]
 
-    with open('boxoffice.csv', 'a', newline = '') as csvfile:
-        fieldnames = ['ranking', 'title', 'title_id', 'date']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    # with open('boxoffice.csv', 'a', newline = '') as csvfile:
+    #     fieldnames = ['ranking', 'title', 'title_id', 'date']
+    #     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-        with open('boxoffice.csv', 'r') as f:
-            reader = csv.reader(f)
-            your_list = list(reader)
+    #     with open('boxoffice.csv', 'r') as f:
+    #         reader = csv.reader(f)
+    #         your_list = list(reader)
 
-            for i in range(len(your_list)):
-                date_criteria.append(your_list[i][3])
+    #         for i in range(len(your_list)):
+    #             date_criteria.append(your_list[i][3])
 
-        for i in title_id_list:
-            i.ranking = str(i.ranking)
-            i.ranking = i.ranking.replace('(', '')
-            i.ranking = i.ranking.replace(')', '')
-            i.ranking = i.ranking.replace(',', '')
-            i.ranking = i.ranking.replace('"', '')
-            i.ranking = i.ranking.replace("'", '')
+    #     for i in title_id_list:
+    #         i.ranking = str(i.ranking)
+    #         i.ranking = i.ranking.replace('(', '')
+    #         i.ranking = i.ranking.replace(')', '')
+    #         i.ranking = i.ranking.replace(',', '')
+    #         i.ranking = i.ranking.replace('"', '')
+    #         i.ranking = i.ranking.replace("'", '')
 
-            i.title = str(i.title)
-            i.title = i.title.replace('(', '')
-            i.title = i.title.replace(')', '')
-            i.title = i.title.replace(',', '')
-            i.title = i.title.replace('"', '')
-            i.title = i.title.replace("'", '')
+    #         i.title = str(i.title)
+    #         i.title = i.title.replace('(', '')
+    #         i.title = i.title.replace(')', '')
+    #         i.title = i.title.replace(',', '')
+    #         i.title = i.title.replace('"', '')
+    #         i.title = i.title.replace("'", '')
 
-            i.title_id = str(i.title_id)
-            i.title_id = i.title_id.replace('(', '')
-            i.title_id = i.title_id.replace(')', '')
-            i.title_id = i.title_id.replace(',', '')
-            i.title_id = i.title_id.replace('"', '')
-            i.title_id = i.title_id.replace("'", '')
+    #         i.title_id = str(i.title_id)
+    #         i.title_id = i.title_id.replace('(', '')
+    #         i.title_id = i.title_id.replace(')', '')
+    #         i.title_id = i.title_id.replace(',', '')
+    #         i.title_id = i.title_id.replace('"', '')
+    #         i.title_id = i.title_id.replace("'", '')
 
-            if not date in date_criteria:
-                writer.writerow({'ranking': i.ranking, 'title': i.title, 'title_id': i.title_id, 'date': i.date})
+    #         if not date in date_criteria:
+    #             writer.writerow({'ranking': i.ranking, 'title': i.title, 'title_id': i.title_id, 'date': i.date})
 
 
 def create_db():
@@ -421,10 +421,10 @@ def create_db():
     conn = sqlite3.connect('movie.db')
     cur = conn.cursor()
 
-    statement = '''
-        DROP TABLE IF EXISTS 'BoxOffice';
-    '''
-    cur.execute(statement)
+    # statement = '''
+    #     DROP TABLE IF EXISTS 'BoxOffice';
+    # '''
+    # cur.execute(statement)
 
     statement = '''
         DROP TABLE IF EXISTS 'MovieInfo';
@@ -433,16 +433,16 @@ def create_db():
     conn.commit()
 
 
-    statement = '''
-        CREATE TABLE 'BoxOffice' (
-            'id' INTEGER PRIMARY KEY AUTOINCREMENT,
-            'ranking' Integer NOT NULL,
-            'title' TEXT NOT NULL,
-            'title_id' Integer NOT NULL,
-            'ranking_date' Integer NOT NULL
-        );
-    '''
-    cur.execute(statement)
+    # statement = '''
+    #     CREATE TABLE 'BoxOffice' (
+    #         'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+    #         'ranking' Integer NOT NULL,
+    #         'title' TEXT NOT NULL,
+    #         'title_id' Integer NOT NULL,
+    #         'ranking_date' Integer NOT NULL
+    #     );
+    # '''
+    # cur.execute(statement)
 
 
     statement = '''
@@ -463,16 +463,16 @@ def create_db():
     cur.execute(statement)
 
 
-    with open('boxoffice.csv') as csvFile:
-        res = csv.reader(csvFile)
+    # with open('boxoffice.csv') as csvFile:
+    #     res = csv.reader(csvFile)
 
-        for row in res:
-            if row[0] != 'ranking':
-                insertion = (None, row[0], row[1], row[2], row[3])
-                statement = 'INSERT INTO "BoxOffice" '
-                statement += 'VALUES (?, ?, ?, ?, ?)'
-                cur.execute(statement, insertion)
-                conn.commit()
+    #     for row in res:
+    #         if row[0] != 'ranking':
+    #             insertion = (None, row[0], row[1], row[2], row[3])
+    #             statement = 'INSERT INTO "BoxOffice" '
+    #             statement += 'VALUES (?, ?, ?, ?, ?)'
+    #             cur.execute(statement, insertion)
+    #             conn.commit()
 
     with open('movie_info.csv') as csvFile:
         res = csv.reader(csvFile)
@@ -487,37 +487,37 @@ def create_db():
 
 
 
-def interactive_prompt():
-    response = ''
-    while response != 'exit':
-        response = input('Enter a command: ')
-        command = response.split() 
+# def interactive_prompt():
+#     response = ''
+#     while response != 'exit':
+#         response = input('Enter a command: ')
+#         command = response.split() 
 
-        if response == 'help':
-                print("""    
-    +++++++++++++++++++ HELP +++++++++++++++++++ 
-    The input should be 'type' and 'date'.
-    [TYPE]
-    You can choose one of type below.
-        boxoffice: Show the movie information based on the date's box-office ranking
-        runtime: Show the movie information based on the whole gross income
-        releasedate: Show the movie information based on the number of theaters
-        budget: Show the movie information based on the number of dates after release
-    [DATE]
-    The date type should be 'YYYYMMDD'
-    The input example is daily 20181201
-    If you want to finish this system, type exit
-                    """)
-                continue
+#         if response == 'help':
+#                 print("""    
+#     +++++++++++++++++++ HELP +++++++++++++++++++ 
+#     The input should be 'type' and 'date'.
+#     [TYPE]
+#     You can choose one of type below.
+#         boxoffice: Show the movie information based on the date's box-office ranking
+#         runtime: Show the movie information based on the whole gross income
+#         releasedate: Show the movie information based on the number of theaters
+#         budget: Show the movie information based on the number of dates after release
+#     [DATE]
+#     The date type should be 'YYYYMMDD'
+#     The input example is daily 20181201
+#     If you want to finish this system, type exit
+#                     """)
+#                 continue
 
-        elif command[0] in ['boxoffice', 'runtime', 'releasedate', 'budget']:
-            date = command[1]
-            get_box_office(date)
-            print(date)
+#         elif command[0] in ['boxoffice', 'runtime', 'release', 'budget']:
+#             date = command[1]
+#             get_box_office(date)
+#             print(date)
 
-        elif response == 'exit':
-            print('bye')
-            exit()
+#         elif response == 'exit':
+#             print('bye')
+#             exit()
 
 
 
@@ -528,7 +528,7 @@ def interactive_prompt():
 # create_db()
 
 
-date = '2018-05-31'
+date = '2018-11-25'
 # get_movie_id()
 # get_movie_info()
 # (get_box_office(date))
@@ -536,12 +536,12 @@ date = '2018-05-31'
 # create_db()
 # create_csv()
 
-for a in range(1):
-    date = datetime.strptime(date, "%Y-%m-%d")
-    date = date + timedelta(days=1)
-    date = str(date)[:10]
+# for a in range(5):
+#     date = datetime.strptime(date, "%Y-%m-%d")
+#     date = date + timedelta(days=1)
+#     date = str(date)[:10]
 
-    create_db()
+#     create_db()
 
 
 

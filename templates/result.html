@@ -7,8 +7,9 @@
 		<img src="https://randomuser.me/api/portraits/men/3.jpg">
 	</div>
 	<div class="right">		
-			<h1> {{title}} </h1>
-			<p> Runtime: 1h 52m </p>
+		{% for e in entries %}
+			<h1> {{e.title}} </h1>
+<!-- 			<p> Runtime: 1h 52m </p>
 			<p> Release Date: Oct 5, 2018 </p>
 			<p> Genres: Science Fiction </p>
 			<p> Synopsys:
@@ -35,7 +36,8 @@
 			  <div class="container">
 			    <h4><b>John Doe</b></h4> 
 			  </div>
-			</div>		
+			</div>	 -->
+		{% endfor %}	
 
 	</div>
 </div>
