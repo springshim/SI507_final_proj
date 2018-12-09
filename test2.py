@@ -1,24 +1,38 @@
-test = [(1, '/lCfKAAFyANPFn04xOPqazd8jwnc.jpg', 'The Grinch', 90, '2018-11-08', 'Animation', 'The Grinch hatches a scheme to ruin Christmas when the residents of Whoville plan their annual holiday celebration.', "(['Benedict Cumberbatch', 'Cameron Seely', 'Rashida Jones', 'Angela Lansbury', 'Kenan Thompson'],)", "['/wz3MRiMmoz6b5X3oSzMRC9nLxY1.jpg', '/wpo7g3DdcOBkkgZJPBAsXwpkZ1b.jpg', '/jjp33eRM6oavyesW0UM6XBCxQSa.jpg', '/vHnkT39YwSRVoiFbvG7wFqwXA2Y.jpg', '/As3n7ZdAoUnaB39Jl19eJBZOPbl.jpg']"), (3, '/OphaHihfuXhUGmpNIRIsO3oMgm.jpg', 'The Nutcracker and the Four Realms', 93, '2018-10-26', 'Fantasy', 'A young girl is transported into a magical world of gingerbread soldiers and an army of mice.', "(['Mackenzie Foy', 'Keira Knightley', 'Morgan Freeman', 'Helen Mirren', 'Matthew Macfadyen'],)", "['/6Ef0vpRGuTE8rFaorCQID6tpJIP.jpg', '/pxzcVzTyJBKwfuyRLDtax1Jmr7o.jpg', '/oGJQhOpT8S1M56tvSsbEBePV5O1.jpg', '/4EGgBJPUBz68ZrnFuLVo01r0uND.jpg', '/2FF3Yjxd7DYR4EIJL6s2GpKDMkJ.jpg']"), (9, '/bXs0zkv2iGVViZEy78teg2ycDBm.jpg', 'Halloween', 106, '2018-10-18', 'Thriller', 'Laurie Strode comes to her final confrontation with Michael Myers the masked figure who has haunted her since she narrowly escaped his killing spree on Halloween night four decades ago.', "(['Jamie Lee Curtis', 'Andi Matichak', 'Nick Castle', 'Judy Greer', 'Will Patton'],)", "['/c4poMDwQ0nUj81m4WPriiv96ExZ.jpg', '/7DYO1zSuXDpd44uwroqsftB7MYP.jpg', '/ecUHW93fTzJLCEZcpfvfjgNMi1o.jpg', '/ooEejsGv4loFIKnbe2arzOwWy6H.jpg', '/qpycaaWP1oUx1Wd2lMBfQtR7qDO.jpg']"), (4, '/l76Rgp32z2UxjULApxGXAPpYdAP.jpg', 'Overlord', 110, '2018-11-01', 'Action', 'On the eve of D-Day during World War II American paratroopers are caught behind enemy lines after their plane crashes on a mission to destroy a German Radio Tower in a small town outside of Normandy. After reaching their target the paratroopers come to realize that besides fighting off Nazi soldiers they also must fight against horrifying bloody and violent creatures that are a result of a secret Nazi experiment.', "(['Jovan Adepo', 'Wyatt Russell', 'Mathilde Ollivier', 'Pilou Asbæk', 'John Magaro'],)", "['/odm9gOtQBYrV3nUtCM2mq1sQABM.jpg', '/f759e6y7uhobWRCmD0O21cBmjBA.jpg', None, '/r0Z1eqyYcJYGy0x9MqgIKDHUrHG.jpg', '/v1SUpbMcu46dRBACoTnzkdfBgIn.jpg']"), (7, '/3mbJyBFsryL6wcSuEwHXvpzdOYa.jpg', 'Nobodys Fool', 110, '1994-12-23', 'Drama', 'Sully is a rascally neer-do-well approaching retirement age. While he is pressing a workers compensation suit for a bad knee he secretly works for his nemesis Carl and flirts with Carls young wife Toby. Sullys long- forgotten son and family have moved back to town so Sully faces unfamiliar family responsibilities. Meanwhile Sullys landladys banker son plots to push through a new development and evict Sully from his mothers life.', "(['Paul Newman', 'Bruce Willis', 'Melanie Griffith', 'Jessica Tandy', 'Dylan Walsh'],)", "['/bQDCw79HlOl1E1ufxUEcQLi7xfl.jpg', '/kI1OluWhLJk3pnR19VjOfABpnTY.jpg', '/rdRjFsPQDQqPE8JlDQcuT5JDpED.jpg', '/tDoTea4JEVuo8wgzkOxUpd1Drkh.jpg', '/6rOQgNjIJUqXDiM06K2hrL68Eky.jpg']"), (8, '/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg', 'Venom', 112, '2018-10-03', 'Science Fiction', 'Eddie Brock is a reporter—investigating people who want to go unnoticed. But after he makes a terrible discovery at the Life Foundation he begins to transform into ‘Venom’.  The Foundation has discovered creatures called symbiotes and believes they’re the key to the next step in human evolution. Unwittingly bonded with one Eddie discovers he has incredible new abilities—and a voice in his head that’s telling him to embrace the darkness.', "(['Tom Hardy', 'Michelle Williams', 'Riz Ahmed', 'Reid Scott', 'Scott Haze'],)", "['/4CR1D9VLWZcmGgh4b6kKuY2NOel.jpg', '/r4HQM2gO9Q7Ti7sJcRE4hcP8ddN.jpg', '/yWjuIP634unLBCB4XjSgmJs5QGC.jpg', '/kBAeDUDA7XJRXFLGNALlpE5d3lA.jpg', '/KiLRMH4Mzaobr7VnykbOPVQcfi.jpg']"), (6, '/w4ibr8R702DCjwYniry1D1XwQXj.jpg', 'The Girl in the Spiders Web', 117, '2018-10-26', 'Drama', 'Lisbeth Salander and Mikael Blomkvist find themselves caught in a web of spies cyber-criminals and corrupt government officials - both in Sweden and in the United States - whom are only known as The Spider Society.', "(['Claire Foy', 'Sverrir Gudnason', 'Sylvia Hoeks', 'Lakeith Stanfield', 'Stephen Merchant'],)", "['/a7ws0h1TQeoC97lBo0unFolNe4q.jpg', '/4nAiRDA3k53sCfWrR77mEm6s1af.jpg', '/wKC9LgqgJRCXuzs1kUKaK7Uicv.jpg', '/5AykKpsH8DMxIm144ET7fVVTQfw.jpg', '/A70Gtg3kkTeCBgtFkSRPu9qfPQu.jpg']"), (10, '/2icwBom0t5nmOuZI9FVXF3gkMK0.jpg', 'The Hate U Give', 133, '2018-10-19', 'Drama', 'Raised in a poverty-stricken slum a 16-year-old girl named Starr now attends a suburban prep school. After she witnesses a police officer shoot her unarmed best friend shes torn between her two very different worlds as she tries to speak her truth.', "(['Amandla Stenberg', 'Lamar Johnson', 'Regina Hall', 'Russell Hornsby', 'Anthony Mackie'],)", "['/w1rlIXKUZFeVU1JRmZI2B6YBSk2.jpg', '/4IEsKiSsyckleKsPsiIVtAh6QDy.jpg', '/5xwv4XUND9HhJqfeTmtxmzJJJR0.jpg', '/7ikcEpOQ1FUCcKrYvg8Kdu6FjGP.jpg', '/5VGGJ0Co8SC94iiedWb2o3C36T.jpg']"), (2, '/lHu1wtNaczFPGFDTrjCSzeLPTKN.jpg', 'Bohemian Rhapsody', 135, '2018-10-24', 'Drama', 'Singer Freddie Mercury guitarist Brian May drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock n roll band Queen in 1970. Hit songs become instant classics. When Mercurys increasingly wild lifestyle starts to spiral out of control Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.', "(['Rami Malek', 'Gwilym Lee', 'Ben Hardy', 'Joseph Mazzello', 'Lucy Boynton'],)", "['/zvBCjFmedqXRqa45jlLf6vBd9Nt.jpg', '/k6geayRL4wHLboFZpQYdkouQpvJ.jpg', '/Bge1QhTCTziGLI63eua04kdTK9.jpg', '/44gsv7TlXOOKDGg5aRtqxZjM9ae.jpg', '/znBMEv0NmBewhZWHUopmzEIYVyY.jpg']"), (5, '/wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg', 'A Star Is Born', 135, '2018-10-03', 'Drama', 'Seasoned musician Jackson Maine discovers—and falls in love with—struggling artist Ally. She has just about given up on her dream to make it big as a singer—until Jack coaxes her into the spotlight. But even as Allys career takes off the personal side of their relationship is breaking down as Jack fights an ongoing battle with his own internal demons.', "(['Bradley Cooper', 'Lady Gaga', 'Sam Elliott', 'Andrew Dice Clay', 'Dave Chappelle'],)", "['/z5LUl9bljJnah3S5rtN7rScrmI8.jpg', '/4VogV8IgKrFYoVyjNuu5la1oMNp.jpg', '/f2AxZZ6d0Cit0tmf6wYTHcGfwT9.jpg', '/1KzjDfy2r0Q8HUiEYfLvrOqVWH0.jpg', '/qrJzigQLQ7FwrzYBLeDwvuPN63t.jpg']")]
-
+test = [(1, '/lCfKAAFyANPFn04xOPqazd8jwnc.jpg', 'The Grinch', 90, '2018-11-08', 'Animation', 
+	'The Grinch hatches a scheme to ruin Christmas when the residents of Whoville plan their annual holiday celebration.', 
+	"(['Benedict Cumberbatch', 'Cameron Seely', 'Rashida Jones', 'Angela Lansbury', 'Kenan Thompson'],)", 
+	"['/wz3MRiMmoz6b5X3oSzMRC9nLxY1.jpg', '/wpo7g3DdcOBkkgZJPBAsXwpkZ1b.jpg', '/jjp33eRM6oavyesW0UM6XBCxQSa.jpg', '/vHnkT39YwSRVoiFbvG7wFqwXA2Y.jpg', '/As3n7ZdAoUnaB39Jl19eJBZOPbl.jpg']")]
 
 #################### Starring images
-# res = test[0][8]
-# a[1] = a[1].replace(',', '')
-# a[1] = a[1].replace("'", '')
-# url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + a[1]
-# print(url)
+res = test[0][8]
+a = res.split()
+result_url = []
+
+for i in range(5):
+	a[i] = a[i].replace(',', '')
+	a[i] = a[i].replace("'", '')
+	a[i] = a[i].replace("[", '')
+	a[i] = a[i].replace("]", '')
+	url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + a[i]
+	result_url.append(url)
+print(result_url)
 
 
 # #################### Starring lists
-res = test[0][7]
-	a = res.split()
-	b= str(a[0:2])
-	b = b.replace(",", "")
-	b = b.replace("'", '')
-	b = b.replace('[', '')
-	b = b.replace(']', '')
-	b = b.replace('(', '')
-	b = b.replace(')', '')
-	b = b.replace('"', '')
+# res = test[0][7]
+# a = res.split()
+# c = []
+# index = 0
+# for i in range(5):
+# 	b = str(a[index:index+2])
+# 	b = b.replace(",", "")
+# 	b = b.replace("'", '')
+# 	b = b.replace('[', '')
+# 	b = b.replace(']', '')
+# 	b = b.replace('(', '')
+# 	b = b.replace(')', '')
+# 	b = b.replace('"', '')
+# 	c.append(b)
+# 	index += 2
 
-print(b)
+# print(c)

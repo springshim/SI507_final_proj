@@ -4,47 +4,67 @@
 
 <link rel="stylesheet" href="../static/style.css">
 
-<h1>Search result of October 30th 2018 box-office ranking</h1>
+<h2>Search result of {{year}}-{{month}}-{{date}}, Type: {{type}}, Order: {{order}}</h2>
 
-<div class="fullbox">
+
+<div class="bigbox">
+<a href="/">Set the query again</a>
+{% for e in entries %}	
+<div class="smallbox">
+
 	<div class="left">
-		<p> {{entries}} </p>
-		<!-- <img src="https://randomuser.me/api/portraits/men/3.jpg"> -->
+		<img src="{{e.poster}}">
 	</div>
+
 	<div class="right">		
-		{% for e in entries %}
-			<h1> {{e.title}} </h1>
-<!-- 			<p> Runtime: 1h 52m </p>
-			<p> Release Date: Oct 5, 2018 </p>
-			<p> Genres: Science Fiction </p>
-			<p> Synopsys:
-			When Eddie Brock acquires the powers of a symbiote, he will have to release his alter-ego "Venom" to save his life.
-			</p>
+			<h2> {{e.title}} </h2>
+			<p> Runtime: {{e.runtime}} </p>
+			<p> Release: {{e.release}} </p>
+			<p> Genre: {{e.genre}} </p>
+			<p> Overview: {{e.overview}} </p>
+
+
 			<h3>Starring</h3>
 
 			<div class="card">
-			  <img src="https://randomuser.me/api/portraits/men/3.jpg" width="128">
+			  <img src="{{e.picture0}}" width="120">
 			  <div class="container">
-			    <h4><b>John Doe</b></h4> 
+			    <p>{{ e.starring0 }}</p>
 			  </div>
 			</div>
 
 			<div class="card">
-			  <img src="https://randomuser.me/api/portraits/men/3.jpg" width="128">
+			  <img src="{{e.picture1}}" width="120">
 			  <div class="container">
-			    <h4><b>John Doe</b></h4> 
+			    <p>{{ e.starring1 }}</p> 
 			  </div>
-			</div>	
+			</div>
 
 			<div class="card">
-			  <img src="https://randomuser.me/api/portraits/men/3.jpg" width="128">
+			  <img src="{{e.picture2}}" width="120">
 			  <div class="container">
-			    <h4><b>John Doe</b></h4> 
+			    <p>{{ e.starring2 }}</p>
 			  </div>
-			</div>	 -->
-		{% endfor %}	
+			</div>
+
+			<div class="card">
+			  <img src="{{e.picture3}}" width="120">
+			  <div class="container">
+			    <p>{{ e.starring3 }}</p>
+			  </div>
+			</div>
+
+			<div class="card">
+			  <img src="{{e.picture4}}" width="120">
+			  <div class="container">
+			    <p>{{ e.starring4 }}</p>
+			  </div>
+			</div>
 
 	</div>
+	
+</div>
+{% endfor %}
 </div>
 </body>
 </html>

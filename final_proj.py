@@ -287,267 +287,226 @@ date = '2018-11-11'
 get_movie_info()
 
 
-# def create_csv():
-#     res_list = []
-#     res_list = get_movie_info()
-#     title_id_list = []
-#     title_id_list = get_box_office(date)
-#     temp = []
-#     title_criteria = []
-#     title2_criteria = []
-#     date_criteria = []
+def create_csv():
+    res_list = []
+    res_list = get_movie_info()
+    title_id_list = []
+    title_id_list = get_box_office(date)
+    temp = []
+    title_criteria = []
+    title2_criteria = []
+    date_criteria = []
 
 
-#     with open('movie_info.csv', 'a', newline = '') as csvfile:
-#         fieldnames = ['poster', 'title', 'title_id', 'runtime', 'budget', 'release', 'genre', 'overview', 'starring', 'picture']
-#         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    with open('movie_info.csv', 'a', newline = '') as csvfile:
+        fieldnames = ['poster', 'title', 'title_id', 'runtime', 'budget', 'release', 'genre', 'overview', 'starring', 'picture']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-#         with open('movie_info.csv', 'r') as f:
-#             reader = csv.reader(f)
-#             your_list = list(reader)
+        with open('movie_info.csv', 'r') as f:
+            reader = csv.reader(f)
+            your_list = list(reader)
 
-#             for i in range(len(your_list)):
-#                 title_criteria.append(your_list[i][1])
+            for i in range(len(your_list)):
+                title_criteria.append(your_list[i][1])
 
-#         for i in res_list:
-#             i.poster = str(i.poster)
-#             i.poster = i.poster.replace('(', '')
-#             i.poster = i.poster.replace(')', '')
-#             i.poster = i.poster.replace(',', '')
-#             i.poster = i.poster.replace('"', '')
-#             i.poster = i.poster.replace("'", '')
+        for i in res_list:
+            i.poster = str(i.poster)
+            i.poster = i.poster.replace('(', '')
+            i.poster = i.poster.replace(')', '')
+            i.poster = i.poster.replace(',', '')
+            i.poster = i.poster.replace('"', '')
+            i.poster = i.poster.replace("'", '')
 
-#             i.title = str(i.title)
-#             i.title = i.title.replace('(', '')
-#             i.title = i.title.replace(')', '')
-#             i.title = i.title.replace(',', '')
-#             i.title = i.title.replace('"', '')
-#             i.title = i.title.replace("'", '')
+            i.title = str(i.title)
+            i.title = i.title.replace('(', '')
+            i.title = i.title.replace(')', '')
+            i.title = i.title.replace(',', '')
+            i.title = i.title.replace('"', '')
+            i.title = i.title.replace("'", '')
 
-#             i.title_id = str(i.title_id)
-#             i.title_id = i.title_id.replace('(', '')
-#             i.title_id = i.title_id.replace(')', '')
-#             i.title_id = i.title_id.replace(',', '')
-#             i.title_id = i.title_id.replace('"', '')
-#             i.title_id = i.title_id.replace("'", '')
+            i.title_id = str(i.title_id)
+            i.title_id = i.title_id.replace('(', '')
+            i.title_id = i.title_id.replace(')', '')
+            i.title_id = i.title_id.replace(',', '')
+            i.title_id = i.title_id.replace('"', '')
+            i.title_id = i.title_id.replace("'", '')
 
-#             i.runtime = str(i.runtime)
-#             i.runtime = i.runtime.replace('(', '')
-#             i.runtime = i.runtime.replace(')', '')
-#             i.runtime = i.runtime.replace(',', '')
-#             i.runtime = i.runtime.replace('"', '')
-#             i.runtime = i.runtime.replace("'", '')                
+            i.runtime = str(i.runtime)
+            i.runtime = i.runtime.replace('(', '')
+            i.runtime = i.runtime.replace(')', '')
+            i.runtime = i.runtime.replace(',', '')
+            i.runtime = i.runtime.replace('"', '')
+            i.runtime = i.runtime.replace("'", '')                
 
-#             i.budget = str(i.budget)
-#             i.budget = i.budget.replace('(', '')
-#             i.budget = i.budget.replace(')', '')
-#             i.budget = i.budget.replace(',', '')
-#             i.budget = i.budget.replace('"', '')
-#             i.budget = i.budget.replace("'", '')
+            i.budget = str(i.budget)
+            i.budget = i.budget.replace('(', '')
+            i.budget = i.budget.replace(')', '')
+            i.budget = i.budget.replace(',', '')
+            i.budget = i.budget.replace('"', '')
+            i.budget = i.budget.replace("'", '')
 
-#             i.release = str(i.release)
-#             i.release = i.release.replace('(', '')
-#             i.release = i.release.replace(')', '')
-#             i.release = i.release.replace(',', '')
-#             i.release = i.release.replace('"', '')
-#             i.release = i.release.replace("'", '')
+            i.release = str(i.release)
+            i.release = i.release.replace('(', '')
+            i.release = i.release.replace(')', '')
+            i.release = i.release.replace(',', '')
+            i.release = i.release.replace('"', '')
+            i.release = i.release.replace("'", '')
 
-#             i.genre = str(i.genre)
-#             i.genre = i.genre.replace('(', '')
-#             i.genre = i.genre.replace(')', '')
-#             i.genre = i.genre.replace(',', '')
-#             i.genre = i.genre.replace('"', '')
-#             i.genre = i.genre.replace("'", '')
+            i.genre = str(i.genre)
+            i.genre = i.genre.replace('(', '')
+            i.genre = i.genre.replace(')', '')
+            i.genre = i.genre.replace(',', '')
+            i.genre = i.genre.replace('"', '')
+            i.genre = i.genre.replace("'", '')
 
-#             i.overview = str(i.overview)
-#             i.overview = i.overview.replace('(', '')
-#             i.overview = i.overview.replace(')', '')
-#             i.overview = i.overview.replace(',', '')
-#             i.overview = i.overview.replace('"', '')
-#             i.overview = i.overview.replace("'", '')   
+            i.overview = str(i.overview)
+            i.overview = i.overview.replace('(', '')
+            i.overview = i.overview.replace(')', '')
+            i.overview = i.overview.replace(',', '')
+            i.overview = i.overview.replace('"', '')
+            i.overview = i.overview.replace("'", '')   
 
-#             temp.append(i.title_id)            
-#             if not i.title in title_criteria:
-#                 try:
-#                     writer.writerow({'poster': i.poster, 'title': i.title, 'title_id': i.title_id, 'runtime':i.runtime, 'budget':i.budget, 'release': i.release, 'genre': i.genre, 'overview': i.overview, 'starring': i.starring, 'picture': i.picture})
-#                 except:
-#                     i.overview = ''
-#                     i.starring = ''
-#                     writer.writerow({'poster': i.poster, 'title': i.title, 'title_id': i.title_id, 'runtime':i.runtime, 'budget':i.budget, 'release': i.release, 'genre': i.genre, 'overview': i.overview, 'starring': i.starring, 'picture': i.picture})
-
-
-#     for i in range(len(temp)):
-#         title_id_list[i].title_id = temp[i]
-
-#     with open('boxoffice.csv', 'a', newline = '') as csvfile:
-#         fieldnames = ['ranking', 'title', 'title_id', 'date']
-#         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-#         with open('boxoffice.csv', 'r') as f:
-#             reader = csv.reader(f)
-#             your_list = list(reader)
-
-#             for i in range(len(your_list)):
-#                 date_criteria.append(your_list[i][3])
-
-#         for i in title_id_list:
-#             i.ranking = str(i.ranking)
-#             i.ranking = i.ranking.replace('(', '')
-#             i.ranking = i.ranking.replace(')', '')
-#             i.ranking = i.ranking.replace(',', '')
-#             i.ranking = i.ranking.replace('"', '')
-#             i.ranking = i.ranking.replace("'", '')
-
-#             i.title = str(i.title)
-#             i.title = i.title.replace('(', '')
-#             i.title = i.title.replace(')', '')
-#             i.title = i.title.replace(',', '')
-#             i.title = i.title.replace('"', '')
-#             i.title = i.title.replace("'", '')
-
-#             i.title_id = str(i.title_id)
-#             i.title_id = i.title_id.replace('(', '')
-#             i.title_id = i.title_id.replace(')', '')
-#             i.title_id = i.title_id.replace(',', '')
-#             i.title_id = i.title_id.replace('"', '')
-#             i.title_id = i.title_id.replace("'", '')
-
-#             if not date in date_criteria:
-#                 writer.writerow({'ranking': i.ranking, 'title': i.title, 'title_id': i.title_id, 'date': i.date})
+            temp.append(i.title_id)            
+            if not i.title in title_criteria:
+                try:
+                    writer.writerow({'poster': i.poster, 'title': i.title, 'title_id': i.title_id, 'runtime':i.runtime, 'budget':i.budget, 'release': i.release, 'genre': i.genre, 'overview': i.overview, 'starring': i.starring, 'picture': i.picture})
+                except:
+                    i.overview = ''
+                    i.starring = ''
+                    writer.writerow({'poster': i.poster, 'title': i.title, 'title_id': i.title_id, 'runtime':i.runtime, 'budget':i.budget, 'release': i.release, 'genre': i.genre, 'overview': i.overview, 'starring': i.starring, 'picture': i.picture})
 
 
-# def create_db():
-#     create_csv()
-#     conn = sqlite3.connect('movie.db')
-#     cur = conn.cursor()
+    for i in range(len(temp)):
+        title_id_list[i].title_id = temp[i]
 
-#     statement = '''
-#         DROP TABLE IF EXISTS 'BoxOffice';
-#     '''
-#     cur.execute(statement)
+    with open('boxoffice.csv', 'a', newline = '') as csvfile:
+        fieldnames = ['ranking', 'title', 'title_id', 'date']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-#     statement = '''
-#         DROP TABLE IF EXISTS 'MovieInfo';
-#     '''
-#     cur.execute(statement)    
-#     conn.commit()
+        with open('boxoffice.csv', 'r') as f:
+            reader = csv.reader(f)
+            your_list = list(reader)
 
+            for i in range(len(your_list)):
+                date_criteria.append(your_list[i][3])
 
-#     statement = '''
-#         CREATE TABLE 'BoxOffice' (
-#             'id' INTEGER PRIMARY KEY AUTOINCREMENT,
-#             'ranking' Integer NOT NULL,
-#             'title' TEXT NOT NULL,
-#             'title_id' Integer NOT NULL,
-#             'ranking_date' Integer NOT NULL
-#         );
-#     '''
-#     cur.execute(statement)
+        for i in title_id_list:
+            i.ranking = str(i.ranking)
+            i.ranking = i.ranking.replace('(', '')
+            i.ranking = i.ranking.replace(')', '')
+            i.ranking = i.ranking.replace(',', '')
+            i.ranking = i.ranking.replace('"', '')
+            i.ranking = i.ranking.replace("'", '')
 
+            i.title = str(i.title)
+            i.title = i.title.replace('(', '')
+            i.title = i.title.replace(')', '')
+            i.title = i.title.replace(',', '')
+            i.title = i.title.replace('"', '')
+            i.title = i.title.replace("'", '')
 
-#     statement = '''
-#         CREATE TABLE 'MovieInfo' (
-#             'id' INTEGER PRIMARY KEY AUTOINCREMENT,
-#             'poster' TEXT NOT NULL,
-#             'title' TEXT NOT NULL,
-#             'title_id' Integer NOT NULL,
-#             'runtime' Integer NOT NULL,
-#             'budget' Integer NOT NULL,
-#             'release' TEXT NOT NULL,
-#             'genre' TEXT NOT NULL,
-#             'overview' TEXT NOT NULL,
-#             'starring' TEXT NOT NULL,
-#             'picture' TEXT NOT NULL
-#         );
-#     '''
-#     cur.execute(statement)
+            i.title_id = str(i.title_id)
+            i.title_id = i.title_id.replace('(', '')
+            i.title_id = i.title_id.replace(')', '')
+            i.title_id = i.title_id.replace(',', '')
+            i.title_id = i.title_id.replace('"', '')
+            i.title_id = i.title_id.replace("'", '')
+
+            if not date in date_criteria:
+                writer.writerow({'ranking': i.ranking, 'title': i.title, 'title_id': i.title_id, 'date': i.date})
 
 
-#     with open('boxoffice.csv') as csvFile:
-#         res = csv.reader(csvFile)
+def create_db():
+    create_csv()
+    conn = sqlite3.connect('movie.db')
+    cur = conn.cursor()
 
-#         for row in res:
-#             if row[0] != 'ranking':
-#                 insertion = (None, row[0], row[1], row[2], row[3])
-#                 statement = 'INSERT INTO "BoxOffice" '
-#                 statement += 'VALUES (?, ?, ?, ?, ?)'
-#                 cur.execute(statement, insertion)
-#                 conn.commit()
+    statement = '''
+        DROP TABLE IF EXISTS 'BoxOffice';
+    '''
+    cur.execute(statement)
 
-#     with open('movie_info.csv') as csvFile:
-#         res = csv.reader(csvFile)
-
-#         for row in res:
-#             if row[0] != 'poster':
-#                 insertion = (None, row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9])
-#                 statement = 'INSERT INTO "MovieInfo" '
-#                 statement += 'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
-#                 cur.execute(statement, insertion)
-#                 conn.commit()
+    statement = '''
+        DROP TABLE IF EXISTS 'MovieInfo';
+    '''
+    cur.execute(statement)    
+    conn.commit()
 
 
-
-# def interactive_prompt():
-#     response = ''
-#     while response != 'exit':
-#         response = input('Enter a command: ')
-#         command = response.split() 
-
-#         if len(response) == 1:
-#             if response == 'help':
-#                     print("""    
-#         +++++++++++++++++++ HELP +++++++++++++++++++ 
-#         The input should be 'type' and 'date'.
-#         [TYPE]
-#         You can choose one of type below.
-#             boxoffice: Show the movie information based on the date's box-office ranking
-#             runtime: Show the movie information based on the whole gross income
-#             releasedate: Show the movie information based on the number of theaters
-#             budget: Show the movie information based on the number of dates after release
-#         [DATE]
-#         The date type should be 'YYYY-MM-DD'
-#         The input example is daily 2018-12-01
-#         If you want to finish this system, type exit
-#                         """)
-#                     continue
-
-#             elif response == 'exit':
-#                 print('bye')
-#                 exit()
-
-#             else:
-#                 print('Wrong input, try again')
-                
-#         else:
-#             if command[0] in ['boxoffice', 'runtime', 'release', 'budget']:
-#                 get_query_from_db(response)
-
-#             else:
-#                 print('wrong input')
+    statement = '''
+        CREATE TABLE 'BoxOffice' (
+            'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+            'ranking' Integer NOT NULL,
+            'title' TEXT NOT NULL,
+            'title_id' Integer NOT NULL,
+            'ranking_date' Integer NOT NULL
+        );
+    '''
+    cur.execute(statement)
 
 
-########### TEST LINE ########### 
+    statement = '''
+        CREATE TABLE 'MovieInfo' (
+            'id' INTEGER PRIMARY KEY AUTOINCREMENT,
+            'poster' TEXT NOT NULL,
+            'title' TEXT NOT NULL,
+            'title_id' Integer NOT NULL,
+            'runtime' Integer NOT NULL,
+            'budget' Integer NOT NULL,
+            'release' TEXT NOT NULL,
+            'genre' TEXT NOT NULL,
+            'overview' TEXT NOT NULL,
+            'starring' TEXT NOT NULL,
+            'picture' TEXT NOT NULL
+        );
+    '''
+    cur.execute(statement)
 
 
-# create_db()
+    with open('boxoffice.csv') as csvFile:
+        res = csv.reader(csvFile)
 
+        for row in res:
+            if row[0] != 'ranking':
+                insertion = (None, row[0], row[1], row[2], row[3])
+                statement = 'INSERT INTO "BoxOffice" '
+                statement += 'VALUES (?, ?, ?, ?, ?)'
+                cur.execute(statement, insertion)
+                conn.commit()
 
-date = '2018-11-25'
-# get_movie_id()
-# get_movie_info()
-# (get_box_office(date))
-# get_movie_id()
-# create_db()
-# create_csv()
+    with open('movie_info.csv') as csvFile:
+        res = csv.reader(csvFile)
 
-# for a in range(5):
-#     date = datetime.strptime(date, "%Y-%m-%d")
-#     date = date + timedelta(days=1)
-#     date = str(date)[:10]
-
-#     create_db()
+        for row in res:
+            if row[0] != 'poster':
+                insertion = (None, row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9])
+                statement = 'INSERT INTO "MovieInfo" '
+                statement += 'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+                cur.execute(statement, insertion)
+                conn.commit()
 
 
 
-# if __name__=="__main__":
-#     interactive_prompt()
+def interactive_prompt():
+    response = ''
+    while response != 'exit':
+        response = input('Type the date (YYYY-MM-DD): ')
+
+        if response == 'help':
+                print("""    
+                It creates a database based on your date input. The input should be YYYY-MM-DD format.
+                For instance, 2018-11-18
+                    """)
+                continue
+
+        elif response == 'exit':
+            print('bye')
+            exit()
+
+        else:
+            date = response
+            create_db()
+
+
+if __name__=="__main__":
+    interactive_prompt()

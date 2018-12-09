@@ -1,23 +1,26 @@
 
-h1 {
+h2{
 	text-align: center;
 }
 
-.fullbox {
+.bigbox{
+    width: 1000px;
+    margin: auto;    
+}
+
+.smallbox {
     border-width: 1px;
     width: 1000px;
-  	margin: auto;
+  	margin: 20px;
   	padding: 10px;
 }
 
 .left {
-	background-color: pink;
 	float:left;
 	width: 30%;
 }
 
 .right {
-	background-color: skyblue;
 	float:left;
 	width: 65%;
 }
@@ -25,18 +28,18 @@ h1 {
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 128px;
-    background-color: orange;    
+    width: 120px;
     display: inline-block;
     white-space: nowrap;
+    text-align: text;
 }
 
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+p{
+    text-align: text;
 }
 
-.container {
-    padding: 2px 16px;
+.container{
+    text-align: text;
 }
 
 .input_box{

@@ -3,7 +3,7 @@ import csv
 
 DBNAME = 'movie.db'
 entries = []
-ENTRIES_FILE = "entries.json"
+c = []
 
 def get_input(year, month, date, type, order):
     global entries
@@ -38,16 +38,12 @@ def get_input(year, month, date, type, order):
     elif 'asc' in command:
         statement += 'ASC '
 
-
     params.append(parameter[0])
     cur.execute(statement, params)
     results = cur.fetchall()
 
+    entries = []
     for row in results:
-        entries.append(row)
-    print(entries)
-
-    for row, i in results:
         ranking = row[0]
         poster = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + row[1]
         title = row[2]
@@ -56,80 +52,37 @@ def get_input(year, month, date, type, order):
         genre = row[5]
         overview = row[6]
 
-        a = row[7].split()
-        b= str(a[0:2])
-        b = b.replace(",", "")
-        b = b.replace("'", '')
-        b = b.replace('[', '')
-        b = b.replace(']', '')
-        b = b.replace('(', '')
-        b = b.replace(')', '')
-        b = b.replace('"', '')
+        res = row[7]
+        a = res.split()
+        starring = []
+        index = 0
+        for i in range(5):
+            b = str(a[index:index+2])
+            b = b.replace(",", "")
+            b = b.replace("'", '')
+            b = b.replace('[', '')
+            b = b.replace(']', '')
+            b = b.replace('(', '')
+            b = b.replace(')', '')
+            b = b.replace('"', '')
+            starring.append(b)
+            index += 2
 
-        starring = row[7]
-        picture = row[8]
+        res = row[8]
+        a = res.split()
+        picture = []
 
-        entry = {"ranking": name, "text": text, "timestamp": time_string, "id": str(next_id)}
+        for i in range(5):
+            a[i] = a[i].replace(',', '')
+            a[i] = a[i].replace("'", '')
+            a[i] = a[i].replace("[", '')
+            a[i] = a[i].replace("]", '')
+            url = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + a[i]
+            picture.append(url)
 
-
-
-    # try:
-    #     f = open(ENTRIES_FILE, "w")
-    #     dump_string = json.dumps(entries)
-    #     f.delete()
-    #     f.write(dump_string)
-    #     f.close()
-    # except:
-    #     print("ERROR! Could not write entries to file.")
+        entry = {"ranking": ranking, "poster": poster, "title": title, "runtime": runtime, "release": release, "genre": genre, "overview": overview,
+                "starring0": starring[0], "starring1": starring[1], "starring2": starring[2], "starring3": starring[3], "starring4": starring[4],
+                "picture0": picture[0], "picture1": picture[1], "picture2": picture[2], "picture3": picture[3], "picture4": picture[4]}
+        entries.append(entry)
 
     return entries
-
-
-def get_result():
-    global entries
-    return entries    
-
-
-get_input(2018, 11, 11, 'runtime', 'asc')
-
-# def interactive_prompt():
-#     response = ''
-#     while response != 'exit':
-#         response = input('Enter a command: ')
-#         command = response.split() 
-
-#         if len(response) == 1:
-#             if response == 'help':
-#                     print("""    
-#         +++++++++++++++++++ HELP +++++++++++++++++++ 
-#         The input should be 'type' and 'date'.
-#         [TYPE]
-#         You can choose one of type below.
-#             boxoffice: Show the movie information based on the date's box-office ranking
-#             runtime: Show the movie information based on the whole gross income
-#             releasedate: Show the movie information based on the number of theaters
-#             budget: Show the movie information based on the number of dates after release
-#         [DATE]
-#         The date type should be 'YYYY-MM-DD'
-#         The input example is daily 2018-12-01
-#         If you want to finish this system, type exit
-#                         """)
-#                     continue
-
-#             elif response == 'exit':
-#                 print('bye')
-#                 exit()
-
-#             else:
-#                 print('Wrong input, try again')
-                
-#         else:
-#             if command[0] in ['boxoffice', 'runtime', 'release', 'budget']:
-#                 get_query_from_db(response)
-
-#             else:
-#                 print('wrong input')
-
-
-# if __name__=="__main__":
-#     interactive_prompt()

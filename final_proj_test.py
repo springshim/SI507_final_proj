@@ -1,7 +1,7 @@
 import unittest
 from final_proj import *
 
-class TestStateSearch(unittest.TestCase):
+class TestMovieSearch(unittest.TestCase):
 
     def site_is_in_state_list(self, site_name, site_type, site_list):
         for s in site_list:
@@ -9,17 +9,17 @@ class TestStateSearch(unittest.TestCase):
                 return True
         return False
 
-    def get_site_from_list(self, site_name, site_list):
+    def get_movie_from_list(self, site_name, site_list):
         for s in site_list:
             if site_name == s.name:
                 return s
         return None
 
     def setUp(self):
-        self.mi_site_list = get_sites_for_state('mi')
-        self.az_site_list = get_sites_for_state('az')
-        self.isle_royale = self.get_site_from_list('Isle Royale', self.mi_site_list)
-        self.lake_mead = self.get_site_from_list('Lake Mead', self.az_site_list)
+        self.nov_box_office = get_box_office('2018-11-11')
+        self.june_box_office = get_box_office('2018-06-19')
+        self.isle_royale = self.get_movie_from_list('Isle Royale', self.nov_box_office)
+        self.lake_mead = self.get_movie_from_list('Lake Mead', self.june_box_office)
 
     def test_basic_search(self):
         self.assertEqual(len(self.mi_site_list), 7)
