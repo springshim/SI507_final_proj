@@ -1,94 +1,135 @@
 import sqlite3
 import csv
-import json
-from datetime import datetime
 
 DBNAME = 'movie.db'
+entries = []
+ENTRIES_FILE = "entries.json"
 
-def get_query_from_db(command):
+def get_input(year, month, date, type, order):
+    global entries
     conn = sqlite3.connect(DBNAME)
     cur = conn.cursor()
+    command = str(year) + '-' + str(month) + '-' + str(date) + ' ' + str(type) + ' ' + str(order)
     parameter = command.split()
     params = []
     result = []
 
-    # statement = 'SELECT B.ranking, M.poster, M.title, M.runtime, M.release, M.genre, M.overview, M.starring '
-    statement = 'SELECT M.title ' #이거 지우고 위에 것으로 해야됨
+    statement = 'SELECT B.ranking, M.poster, M.title, M.runtime, M.release, M.genre, M.overview, M.starring, M.picture '
     statement += 'FROM BoxOffice as B '
     statement += 'JOIN MovieInfo as M '
     statement += 'ON B.title_id = M.title_id '
     statement += 'WHERE B.ranking_date = ? '
 
-    if parameter[0] == 'runtime':    
+    if parameter[1] == 'runtime':
         statement += 'ORDER BY M.runtime '
 
-    elif parameter[0] == 'budget':
+    elif parameter[1] == 'budget':
         statement += 'ORDER BY M.budget '
 
-    elif parameter[0] == 'release':
+    elif parameter[1] == 'release':
         statement += 'ORDER BY M.release '
 
-    elif parameter[0] == 'boxoffice':
+    elif parameter[1] == 'boxoffice':
         statement += 'ORDER BY B.ranking '
 
-    if 'DESC' in command:
+    if 'desc' in command:
         statement += 'DESC '
 
-    elif 'ASC' in command:
+    elif 'asc' in command:
         statement += 'ASC '
 
-    else:
-        statement += 'ASC '
 
-    params.append(parameter[1])
+    params.append(parameter[0])
     cur.execute(statement, params)
     results = cur.fetchall()
+
     for row in results:
-        result.append(row)
-        # print(row)
-    print(result)
+        entries.append(row)
+    print(entries)
 
-    return result
+    for row, i in results:
+        ranking = row[0]
+        poster = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + row[1]
+        title = row[2]
+        runtime = row[3]
+        release = row[4]
+        genre = row[5]
+        overview = row[6]
+
+        a = row[7].split()
+        b= str(a[0:2])
+        b = b.replace(",", "")
+        b = b.replace("'", '')
+        b = b.replace('[', '')
+        b = b.replace(']', '')
+        b = b.replace('(', '')
+        b = b.replace(')', '')
+        b = b.replace('"', '')
+
+        starring = row[7]
+        picture = row[8]
+
+        entry = {"ranking": name, "text": text, "timestamp": time_string, "id": str(next_id)}
 
 
-def interactive_prompt():
-    response = ''
-    while response != 'exit':
-        response = input('Enter a command: ')
-        command = response.split() 
 
-        if len(response) == 1:
-            if response == 'help':
-                    print("""    
-        +++++++++++++++++++ HELP +++++++++++++++++++ 
-        The input should be 'type' and 'date'.
-        [TYPE]
-        You can choose one of type below.
-            boxoffice: Show the movie information based on the date's box-office ranking
-            runtime: Show the movie information based on the whole gross income
-            releasedate: Show the movie information based on the number of theaters
-            budget: Show the movie information based on the number of dates after release
-        [DATE]
-        The date type should be 'YYYY-MM-DD'
-        The input example is daily 2018-12-01
-        If you want to finish this system, type exit
-                        """)
-                    continue
+    # try:
+    #     f = open(ENTRIES_FILE, "w")
+    #     dump_string = json.dumps(entries)
+    #     f.delete()
+    #     f.write(dump_string)
+    #     f.close()
+    # except:
+    #     print("ERROR! Could not write entries to file.")
 
-            elif response == 'exit':
-                print('bye')
-                exit()
+    return entries
 
-            else:
-                print('Wrong input, try again')
+
+def get_result():
+    global entries
+    return entries    
+
+
+get_input(2018, 11, 11, 'runtime', 'asc')
+
+# def interactive_prompt():
+#     response = ''
+#     while response != 'exit':
+#         response = input('Enter a command: ')
+#         command = response.split() 
+
+#         if len(response) == 1:
+#             if response == 'help':
+#                     print("""    
+#         +++++++++++++++++++ HELP +++++++++++++++++++ 
+#         The input should be 'type' and 'date'.
+#         [TYPE]
+#         You can choose one of type below.
+#             boxoffice: Show the movie information based on the date's box-office ranking
+#             runtime: Show the movie information based on the whole gross income
+#             releasedate: Show the movie information based on the number of theaters
+#             budget: Show the movie information based on the number of dates after release
+#         [DATE]
+#         The date type should be 'YYYY-MM-DD'
+#         The input example is daily 2018-12-01
+#         If you want to finish this system, type exit
+#                         """)
+#                     continue
+
+#             elif response == 'exit':
+#                 print('bye')
+#                 exit()
+
+#             else:
+#                 print('Wrong input, try again')
                 
-        else:
-            if command[0] in ['boxoffice', 'runtime', 'release', 'budget']:
-                get_query_from_db(response)
+#         else:
+#             if command[0] in ['boxoffice', 'runtime', 'release', 'budget']:
+#                 get_query_from_db(response)
 
-            else:
-                print('wrong input')
+#             else:
+#                 print('wrong input')
 
 
-if __name__=="__main__":
-    interactive_prompt()
+# if __name__=="__main__":
+#     interactive_prompt()

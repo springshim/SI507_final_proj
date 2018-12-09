@@ -38,3 +38,10 @@ h1 {
 .container {
     padding: 2px 16px;
 }
+
+.input_box{
+    text-align: center;
+    margin: auto;
+    padding: 200px;
+    position: center;
+}
