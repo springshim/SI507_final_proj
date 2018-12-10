@@ -246,7 +246,7 @@ def get_movie_info(date):
             compact_starring.append(res_starring[k:k+5])
             compact_starring_pic.append(res_starring_pic[k:k+5])
 
-    print(compact_starring_pic)
+    # print(compact_starring_pic)
 
 
 ################## Compact Information for the future use #################
@@ -281,9 +281,9 @@ def get_movie_info(date):
         # print(compact_result.title)
     return compact_result
 
-def create_csv():
+def create_csv(date):
     res_list = []
-    res_list = get_movie_info()
+    res_list = get_movie_info(date)
     title_id_list = []
     title_id_list = get_box_office(date)
     temp = []
@@ -410,8 +410,8 @@ def create_csv():
                 writer.writerow({'ranking': i.ranking, 'title': i.title, 'title_id': i.title_id, 'date': i.date})
 
 
-def create_db():
-    create_csv()
+def create_db(date):
+    create_csv(date)
     conn = sqlite3.connect('movie.db')
     cur = conn.cursor()
 
@@ -498,8 +498,11 @@ def interactive_prompt():
             exit()
 
         else:
-            date = response
-            create_db()
+            try:
+                date_check = datetime.strptime(response, '%Y-%m-%d')
+                create_db(response)
+            except:
+                print("The input format should be YYYY-MM-DD (ex: 2018-11-18)")
 
 
 if __name__=="__main__":

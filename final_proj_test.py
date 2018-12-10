@@ -2,14 +2,6 @@ import unittest
 from final_proj import *
 from model import *
 
-# get_input (2)
-#     entry 값이 잘 받아져서 작동하는가
-#     (entry.ranking / entry.poster 등 테스트)
-
-# create_db (5)
-#     WHERE 구문이 잘 작동하는가
-#     ORDER가 잘 작동하는가 (4개 해야 함)
-
 class TestBoxOffice(unittest.TestCase):
     def setUp(self):
         self.nov_11th_box_office = get_box_office('2018-11-11')
@@ -73,25 +65,99 @@ class TestMovieInfo(unittest.TestCase):
 
 
 class TestInput(unittest.TestCase):
-    def test_get_input(self):
-        # conn = sqlite3.connect(DBNAME)
-        # cur = conn.cursor()
+    def test_boxoffice(self):
+        conn = sqlite3.connect(DBNAME)
+        cur = conn.cursor()
 
-        # sql = 'SELECT Company FROM Bars'
-        # results = cur.execute(sql)
-        # result_list = results.fetchall()
-        # self.assertIn(('Sirene',), result_list)
-        # self.assertEqual(len(result_list), 1795)
+        sql = 'SELECT title, title_id, ranking FROM BoxOffice WHERE ranking_date = "2018-09-22"'
+        results = cur.execute(sql)
+        result_list = results.fetchall()
+        self.assertEqual((result_list[6][0]), 'Peppermint')
+        self.assertEqual((result_list[7][1]), 1777)
+        self.assertEqual((result_list[1][2]), 2)
 
-        # sql = '''
-        #     SELECT Company, SpecificBeanBarName, CocoaPercent,
-        #            Rating
-        #     FROM Bars
-        #     WHERE Company="Woodblock"
-        #     ORDER BY Rating DESC
-        # '''
-        # results = cur.execute(sql)
-        # result_list = results.fetchall()
+
+    def test_movieinfo(self):
+        conn = sqlite3.connect(DBNAME)
+        cur = conn.cursor()
+
+        sql = '''SELECT M.title, M.genre, M.budget
+                FROM BoxOffice as B
+                JOIN MovieInfo as M
+                ON B.title_id = M.title_id
+                WHERE ranking_date = "2018-10-09"
+    '''
+        results = cur.execute(sql)
+        result_list = results.fetchall()
+
+        self.assertEqual(len(result_list), 10)    
+        self.assertEqual((result_list[2][0]), 'Night School')
+        self.assertEqual((result_list[2][1]), 'Comedy')
+        self.assertEqual((result_list[2][2]), 29000000)
+
+        self.assertEqual((result_list[0][0]), 'Venom')
+        self.assertEqual((result_list[0][1]), 'Science Fiction')
+        self.assertEqual((result_list[0][2]), 116000000)
+
+
+    def test_movieinfo_order_by_budget(self):
+        conn = sqlite3.connect(DBNAME)
+        cur = conn.cursor()
+
+        sql = '''SELECT M.title, M.budget
+                FROM BoxOffice as B
+                JOIN MovieInfo as M
+                ON B.title_id = M.title_id
+                WHERE ranking_date = "2018-09-12"
+                ORDER BY M.budget DESC
+    '''
+
+        results = cur.execute(sql)
+        result_list = results.fetchall()
+
+        self.assertEqual((result_list[0][0]), 'Mission: Impossible - Fallout')
+        self.assertEqual((result_list[0][1]), 178000000)
+
+        self.assertEqual((result_list[1][0]), 'The Meg')
+        self.assertEqual((result_list[1][1]), 150000000)
+
+
+
+        sql = '''SELECT M.title, M.runtime
+                FROM BoxOffice as B
+                JOIN MovieInfo as M
+                ON B.title_id = M.title_id
+                WHERE ranking_date = "2018-09-12"
+                ORDER BY M.runtime DESC
+    '''
+
+        results = cur.execute(sql)
+        result_list = results.fetchall()
+
+        self.assertEqual((result_list[0][0]), 'Mission: Impossible - Fallout')
+        self.assertEqual((result_list[0][1]), 148)
+
+        self.assertEqual((result_list[1][0]), 'BlacKkKlansman')
+        self.assertEqual((result_list[1][1]), 135)
+
+
+        sql = '''SELECT M.title, M.release
+                FROM BoxOffice as B
+                JOIN MovieInfo as M
+                ON B.title_id = M.title_id
+                WHERE ranking_date = "2018-09-12"
+                ORDER BY M.release DESC
+    '''
+
+        results = cur.execute(sql)
+        result_list = results.fetchall()
+
+        self.assertEqual((result_list[0][0]), 'Peppermint')
+        self.assertEqual((result_list[0][1]), '2018-09-06')
+
+        self.assertEqual((result_list[1][0]), 'The Nun')
+        self.assertEqual((result_list[1][1]), '2018-09-05')
+
 
 
 if __name__ == '__main__':
