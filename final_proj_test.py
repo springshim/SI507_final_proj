@@ -81,6 +81,18 @@ class TestInput(unittest.TestCase):
         conn = sqlite3.connect(DBNAME)
         cur = conn.cursor()
 
+        sql = 'SELECT release, genre, budget FROM MovieInfo WHERE title = "Halloween"'
+        results = cur.execute(sql)
+        result_list = results.fetchall()
+        self.assertEqual((result_list[0][0]), '2018-10-18')
+        self.assertEqual((result_list[0][1]), 'Thriller')
+        self.assertEqual((result_list[0][2]), 10000000)
+
+
+    def test_join(self):
+        conn = sqlite3.connect(DBNAME)
+        cur = conn.cursor()
+
         sql = '''SELECT M.title, M.genre, M.budget
                 FROM BoxOffice as B
                 JOIN MovieInfo as M
