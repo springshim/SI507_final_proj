@@ -128,7 +128,6 @@ def get_box_office(date):
     return result_list
 
 
-
 ######################### CACHE DATA #########################
 CACHE_FNAME = "cache_moviedb.json"
 try:
@@ -165,7 +164,7 @@ def make_movie_request_using_cache(url, params):
 
 
 ######################## THE MOVIE DB #########################
-def get_movie_id():
+def get_movie_id(date):
     url = 'https://api.themoviedb.org/3/search/movie'
     params = {}
     params['api_key'] = movie_db_api_key 
@@ -198,8 +197,8 @@ def get_movie_id():
 
 
 
-def get_movie_info():
-    id_list = get_movie_id()
+def get_movie_info(date):
+    id_list = get_movie_id(date)
 
     full_result_list = []
     full_starring_list = []
@@ -281,11 +280,6 @@ def get_movie_info():
         compact_result.append(res)
         # print(compact_result.title)
     return compact_result
-
-
-date = '2018-11-11'
-get_movie_info()
-
 
 def create_csv():
     res_list = []
