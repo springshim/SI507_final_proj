@@ -407,7 +407,7 @@ def create_csv(date):
             i.title_id = i.title_id.replace("'", '')
 
             if not date in date_criteria:
-                writer.writerow({'ranking': i.ranking, 'title': i.title, 'title_id': i.title_id, 'date': i.date})
+                writer.writerow({'ranking': i.ranking, 'title': i.title, 'title_id': i.title_id, 'date': date})
 
 
 def create_db(date):
@@ -480,6 +480,14 @@ def create_db(date):
                 conn.commit()
 
 
+###### Getting Cached data from 2018-06-01 to 2018-11-30 in advance ########
+# date = '2018-05-31'
+# for a in range(180):
+#     date = datetime.strptime(date, "%Y-%m-%d")
+#     date = date + timedelta(days=1)
+#     date = str(date)[:10]
+#     create_db(date)
+
 
 def interactive_prompt():
     response = ''
@@ -500,10 +508,12 @@ def interactive_prompt():
         else:
             try:
                 date_check = datetime.strptime(response, '%Y-%m-%d')
-                create_db(response)
+                date_check = str(date_check)
+                date_check = date_check[0:10]
+                create_db(date_check)
             except:
                 print("The input format should be YYYY-MM-DD (ex: 2018-11-18)")
 
 
-if __name__=="__main__":
-    interactive_prompt()
+# if __name__=="__main__":
+#     interactive_prompt()
