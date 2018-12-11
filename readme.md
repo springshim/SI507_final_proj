@@ -1,5 +1,5 @@
 # SI507 Final Project Demo by Bomi Shim
-This project provides movie information of box-office top 10 ranks on a specific date. The movie information includes the movie title, poster image, runtime, release date, genre, overview, and starring with pictures. The information can be sorted by box-office ranking, runtime, release date, and budget.
+This project provides movie information of top 10 box-office rankings on a specific date. The movie information includes the movie title, poster image, runtime, release date, genre, overview, and starring with pictures. The information can be sorted by box-office ranking, runtime, release date, and budget.
 
 
 ## Data source
@@ -13,6 +13,17 @@ https://www.themoviedb.org/documentation/api?language=en-US
 ## Visualization Software
 Flask
 http://flask.pocoo.org/
+
+
+## Code Structure
+Function:
+- get_box_office(date): collects top 10 box office movie title on a date from Box Office Mojo website. It returns a list 'result_list', which has ranking, title, title id, and date. Among them, title is used as a search query in get_movie_id(date) function.
+- get_movie_id(date): by using the title value from get_box_office(date) function as a search query, finds the movie_id of the search query. The movie id will be used to get more extensive movie data in get_movie_info(date) function. It returns a list 'movie_id_list', which has movie ids.
+- get_movie_info(date): with movie id, it searches movie information including the movie title, poster image, runtime, release date, genre, overview, and starring with pictures. It returns a list 'compact_result' with the movie information above.
+- create_csv(date): With a list result_list and compact_list, it creates two csv files.
+- create_db(date): With the two csv files, it creates database with two tables, BoxOffice and MovieInfo.
+
+Class: It contains two class, BoxOffice and MovieInfo. BoxOffice class has top 10 box office movie title from Box Office Mojo website. MovieInfo class has movie information which is collected from The Movie DB API.
 
 
 ## Files

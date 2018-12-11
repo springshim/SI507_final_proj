@@ -9,6 +9,7 @@
 
 <div class="bigbox">
 <a href="/">Set the query again</a>
+{% if entries %}
 {% for e in entries %}	
 <div class="smallbox">
 
@@ -65,6 +66,12 @@
 	
 </div>
 {% endfor %}
+
+{% else %}
+<h2> ERROR: There is no data on this date. Please check your input date.</h2>
+<h2> If you want to get the data either previous 2018-05-31 or later 2018-12-01, run 'final_proj.py' file.</h2>
+
+{% endif %}
 </div>
 </body>
 </html>
