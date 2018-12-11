@@ -515,5 +515,5 @@ def interactive_prompt():
                 print("The input format should be YYYY-MM-DD (ex: 2018-11-18)")
 
 
-# if __name__=="__main__":
-#     interactive_prompt()
+if __name__=="__main__":
+    interactive_prompt()

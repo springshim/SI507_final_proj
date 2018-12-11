@@ -16,7 +16,8 @@ http://flask.pocoo.org/
 
 
 ## Code Structure
-Function:
+Function
+
 [final_proj.py]
 - get_box_office(date): collects top 10 box office movie title on a date from Box Office Mojo website. It returns a list 'result_list', which has ranking, title, title id, and date. Among them, title is used as a search query in get_movie_id(date) function.
 - get_movie_id(date): by using the title value from get_box_office(date) function as a search query, finds the movie_id of the search query. The movie id will be used to get more extensive movie data in get_movie_info(date) function. It returns a list 'movie_id_list', which has movie ids.
